@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "264812020290",
+    "project_id": "maestroapp",
+    "storage_bucket": "maestroapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264812020290:android:fd4a22596ebffac4cae3db",
+        "android_client_info": {
+          "package_name": "com.dosthai.maestroapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264812020290-mn3fon4pr1dtagggeviat0bg2apcjs2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVvjcOjr0g-Fky-hpV5chmxnSHy8_xNsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264812020290-mn3fon4pr1dtagggeviat0bg2apcjs2p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "264812020290-els3mmhi16iohib28stn4jp72q291bfe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.maestroapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264812020290:android:79290824aa3e366acae3db",
+        "android_client_info": {
+          "package_name": "com.example.maestroapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264812020290-mn3fon4pr1dtagggeviat0bg2apcjs2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVvjcOjr0g-Fky-hpV5chmxnSHy8_xNsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264812020290-mn3fon4pr1dtagggeviat0bg2apcjs2p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "264812020290-els3mmhi16iohib28stn4jp72q291bfe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.maestroapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

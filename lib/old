@@ -1,0 +1,167 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:maestroapp/instagramThumbnail.dart';
+import 'package:maestroapp/urlThumbnail.dart';
+import 'package:maestroapp/videoPreview.dart';
+import 'package:maestroapp/youtubePreview.dart';
+import 'package:maestroapp/youtubeThumbnail.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform,);
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.black,
+        textTheme: TextTheme (
+          labelLarge: TextStyle(color: Colors.black)
+        )
+      ),
+      home: const MyHomePage(title: 'Maestro'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+  final String title;
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+  List<Widget> tiles = [];
+
+  void _showCreate() {
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.grey,
+      context: context, 
+      builder: (BuildContext context) {
+        return Container(
+          height:200,
+          padding: EdgeInsetsDirectional.all(20),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                    leading: GestureDetector(
+                      onTap: () => print('icon tapped'),
+                      child: Icon(Icons.close)
+                    ),
+                    //title: Text('TEST'),
+                    trailing: ElevatedButton.icon(
+                      icon:Icon(Icons.save),
+                      onPressed: () {
+
+                      },
+                      label:Text("Save"),
+                )),
+                TextField(
+              keyboardType: TextInputType.url,
+              maxLines: 1,
+              //controller: _textFieldController,
+              decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.terminal, color: Colors.black,),
+                          border: OutlineInputBorder(),
+                          labelText: "What do you want to save?",
+                          labelStyle: TextStyle(color: Colors.black),
+                        ),
+              
+            ),
+            SizedBox(height: 10),
+              ],
+            )
+          ),
+        );
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(widget.title),
+      ),
+      body: ListView.builder(
+        itemCount: tiles.length, 
+        itemBuilder: (context, index) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(child: GridView.count(
+                  primary: false,
+                  padding: const EdgeInsets.all(20),
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  crossAxisCount: 2,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      //color: Colors.teal[100],
+                      child: InstagramVideoThumbnail('https://www.instagram.com/p/C5qbRTAyYzH/'),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      //color: Colors.teal[200],
+                      child: YouTubeThumbnail("https://www.youtube.com/watch?v=AdkRSaHNmTA"),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      //color: Colors.teal[300],
+                      child: URLThumbnail("https://stackoverflow.com/questions/58088044/how-do-i-open-instagram-from-flutter-app"),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[400],
+                      child: URLThumbnail("https://www.rediff.com/news/report/india-votes-2024-high-drama-as-campaign-ends-in-tvm/20240425.htm"),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[500],
+                      child: const Text('Revolution is coming...'),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[600],
+                      child: const Text('Revolution, they...'),
+                    ),
+                  ],
+                ))
+              ],
+            ),
+          );
+        }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showCreate,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.red,
+      ), 
+    );
+  }
+
+  void save(String url) {
+    tiles.add(
+      Container(
+        padding: const EdgeInsets.all(8),
+          child: URLThumbnail(url),
+      ));
+  }
+}
